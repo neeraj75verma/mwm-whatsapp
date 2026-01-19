@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Equinox × MenWhoMove — The Gate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #070707;
+  --panel: #0e0e0e;
+  --ink: #f2f2f2;
+  --muted: #9a9a9a;
+  --orange: #ff7a18;
+  --orange-soft: rgba(255, 122, 24, 0.15);
+  --green: #25D366;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: radial-gradient(circle at top, #111 0%, #000 70%);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle Power Grid */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 95%, rgba(255,122,24,0.05) 100%),
+    linear-gradient(90deg, transparent 95%, rgba(255,122,24,0.05) 100%);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  width: 90%;
+  max-width: 460px;
+  background: linear-gradient(180deg, #0e0e0e, #070707);
+  padding: 2.5rem 2.2rem;
+  border-radius: 26px;
+  box-shadow: 0 0 80px rgba(0,0,0,0.85);
+  border: 1px solid rgba(255,122,24,0.15);
+  z-index: 1;
+}
+
+/* Power Ring */
+.ring {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255,122,24,0.5);
+  position: relative;
+  box-shadow: 0 0 25px rgba(255,122,24,0.25);
+}
+
+.ring::before,
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255,122,24,0.3);
+}
+
+.brand {
+  text-align: center;
+  letter-spacing: 0.3em;
+  font-size: 0.7rem;
+  color: var(--orange);
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.9rem;
+  margin: 0.75rem 0 0.5rem;
+  letter-spacing: 0.15em;
+}
+
+.sub {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* Power Strip */
+.power {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+  margin-bottom: 1.8rem;
+}
+
+label {
+  display: block;
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+input, select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #0b0b0b;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 1px var(--orange-soft);
+}
+
+button {
+  margin-top: 2.2rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(255,122,24,0.4);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(255,122,24,0.55);
+}
+
+/* States */
+.denied, .granted {
+  display: none;
+  text-align: center;
+}
+
+.denied h2 {
+  color: #ff4d4d;
+  letter-spacing: 0.2em;
+}
+
+.denied p {
+  color: var(--muted);
+}
+
+.granted h2 {
+  letter-spacing: 0.25em;
+  color: var(--orange);
+}
+
+.granted p {
+  color: var(--muted);
+  margin-bottom: 1.8rem;
+}
+
+.granted a {
+  display: block;
+  padding: 1.1rem;
+  background: var(--green);
+  color: #000;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.footer {
+  margin-top: 2.2rem;
+  text-align: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: #555;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div id="formSection">
+    <div class="ring"></div>
+
+    <div class="brand">EQUINOX × MENWHOMOVE</div>
+    <h1>THE GATE</h1>
+    <div class="sub">
+      This is not a group. This is a filter.  
+      Only men chasing **money, power, and control** cross this line.
+    </div>
+
+    <div class="power">
+      <span>WEALTH</span>
+      <span>STATUS</span>
+      <span>INFLUENCE</span>
+      <span>DOMINION</span>
+    </div>
+
+    <form name="menwhomove-gate" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="menwhomove-gate" />
+
+      <label>Why do you want more than your current life can offer?</label>
+      <input type="text" name="reason" required />
+
+      <label>Where are you losing control right now?</label>
+      <select name="stuck" required>
+        <option value="">Select one</option>
+        <option>Money</option>
+        <option>Discipline</option>
+        <option>Purpose</option>
+        <option>Body</option>
+        <option>Relationships</option>
+      </select>
+
+      <label>Are you willing to execute daily, even when no one is watching?</label>
+      <select id="commitment" name="commitment" required>
+        <option value="">Select one</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="submit">CLAIM ACCESS</button>
+    </form>
+  </div>
+
+  <div class="denied" id="denied">
+    <h2>DENIED</h2>
+    <p>
+      Comfort is expensive.  
+      Stay where you are — or come back hungry.
+    </p>
+  </div>
+
+  <div class="granted" id="granted">
+    <h2>ACCESS GRANTED</h2>
+    <p>
+      You are now inside a circle built for **builders, earners, and leaders.**
+    </p>
+    <a href="/inner-circle.html">
+
+      ENTER MENWHOMOVE
+    </a>
+  </div>
+
+  <div class="footer">
+    EQUINOX SYSTEMS — POWER. MONEY. MOTION.
+  </div>
+
+</div>
+
+<script>
+const form = document.querySelector("form");
+const commitment = document.getElementById("commitment");
+const denied = document.getElementById("denied");
+const granted = document.getElementById("granted");
+const formSection = document.getElementById("formSection");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  fetch("/", {
+    method: "POST",
+    body: new FormData(form)
+  });
+
+  formSection.style.display = "none";
+
+  if (commitment.value === "yes") {
+    granted.style.display = "block";
+  } else {
+    denied.style.display = "block";
+  }
+});
+</script>
+
+</body>
+</html>

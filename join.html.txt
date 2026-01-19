@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MenWhoMove — Access Gate</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #0b0b0b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  max-width: 420px;
+  width: 90%;
+  background: #111;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+}
+
+input, select {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+button {
+  margin-top: 1.5rem;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #444;
+  color: #999;
+}
+
+.denied {
+  color: #ff4d4d;
+  margin-top: 1rem;
+  display: none;
+}
+
+.granted {
+  display: none;
+  text-align: center;
+}
+
+.granted a {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #25D366;
+  color: #000;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div id="formSection">
+    <h1>This Is Not a Group.</h1>
+    <p>This is a movement. Answer honestly. Earn access.</p>
+
+    <form name="menwhomove-gate" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="menwhomove-gate" />
+
+      <label>Why do you want to join MenWhoMove?</label>
+      <input type="text" name="reason" required />
+
+      <label>What are you currently stuck in?</label>
+      <select name="stuck" required>
+        <option value="">Select one</option>
+        <option>Money</option>
+        <option>Health</option>
+        <option>Purpose</option>
+        <option>Discipline</option>
+        <option>Relationships</option>
+      </select>
+
+      <label>Are you willing to post daily?</label>
+      <select id="commitment" name="commitment" required>
+        <option value="">Select one</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div class="denied" id="denied">
+    This circle requires action.  
+    Come back when you’re ready.
+  </div>
+
+  <div class="granted" id="granted">
+    <h2>Access Granted</h2>
+    <p>Motion over motivation.</p>
+    <a href="https://chat.whatsapp.com/IQj0Dfob3rOGimdsUt2GsR">
+      ENTER MENWHOMOVE
+    </a>
+  </div>
+</div>
+
+<script>
+const form = document.querySelector("form");
+const commitment = document.getElementById("commitment");
+const denied = document.getElementById("denied");
+const granted = document.getElementById("granted");
+const formSection = document.getElementById("formSection");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const choice = commitment.value;
+
+  // Send form to Netlify silently
+  fetch("/", {
+    method: "POST",
+    body: new FormData(form)
+  });
+
+  formSection.style.display = "none";
+
+  if (choice === "yes") {
+    granted.style.display = "block";
+  } else {
+    denied.style.display = "block";
+  }
+});
+</script>
+
+</body>
+</html>
