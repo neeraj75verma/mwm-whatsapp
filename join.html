@@ -259,8 +259,19 @@ button:hover {
       <span>DOMINION</span>
     </div>
 
-    <form name="menwhomove-gate" method="POST" data-netlify="true">
+    <form 
+  name="menwhomove-gate" 
+  method="POST" 
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+
       <input type="hidden" name="form-name" value="menwhomove-gate" />
+<p style="display:none;">
+  <label>Don’t fill this out if you’re human: 
+    <input name="bot-field" />
+  </label>
+</p>
 
       <label>Why do you want more than your current life can offer?</label>
       <input type="text" name="reason" required />
@@ -338,4 +349,5 @@ form.addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
